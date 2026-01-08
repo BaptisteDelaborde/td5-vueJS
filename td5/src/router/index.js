@@ -1,14 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Cagnottes from '../views/Cagnottes.vue'
+import NewCagnotte from '../views/NewCagnotte.vue'
+
  
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      name: 'cagnottes',
+      component: Cagnottes,
     },
+    {
+      path: '/cagnottes/new',
+      name: 'newcagnotte',
+      component: NewCagnotte,
+    }
     
   ],
 })
