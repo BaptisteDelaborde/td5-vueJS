@@ -1,6 +1,40 @@
 <script>
 export default {
   name: 'NewCagnotte',
+
+  data() {
+    return {
+      name: '',
+      description: '',
+      endDate: '',
+      goal: '',
+      error: null,
+      loading: false
+    }
+  },
+
+  methods: {
+    async createCagnotte() {
+      this.error = null
+      this.loading = true
+
+      try {
+        await this.$api.post('/api/cagnottes', {
+          name: this.name,
+          description: this.description,
+          end_date: this.dateToDB(this.endDate),
+          goal: this.goal
+        })
+
+        // succès → retour à l'accueil
+        this.$router.push('/')
+      } catch (e) {
+        this.error = 'Erreur lors de la création de la cagnotte'
+      } finally {
+        this.loading = false
+      }
+    }
+  }
 }
 </script>
 
@@ -8,17 +42,49 @@ export default {
   <div>
     <h1>Créer une cagnotte</h1>
 
-    <form>
+    <form @submit.prevent="createCagnotte">
       <div>
-        <label>Nom de la cagnotte</label><br />
+        <label>Nom</label><br />
         <input
           type="text"
-          placeholder="Nom de la cagnotte"
+          v-model="name"
           v-focus
+          required
         />
       </div>
 
-      <button type="submit">Créer</button>
+      <div>
+        <label>Description</label><br />
+        <textarea v-model="description"></textarea>
+      </div>
+
+      <div>
+        <label>Date limite</label><br />
+        <input
+          type="text"
+          v-model="endDate"
+          placeholder="dd/mm/yyyy"
+          required
+        />
+      </div>
+
+      <div>
+        <label>Objectif</label><br />
+        <input
+          type="number"
+          v-model="goal"
+          placeholder="€"
+          required
+        />
+      </div>
+
+      <p v-if="error" style="color:red">
+        {{ error }}
+      </p>
+
+      <button type="submit" :disabled="loading">
+        Créer
+      </button>
     </form>
   </div>
 </template>
