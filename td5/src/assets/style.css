@@ -46,3 +46,15 @@
   background-color: #198754;
   transition: width 0.3s ease;
 }
+
+
+.cagnotte-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.finished {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}

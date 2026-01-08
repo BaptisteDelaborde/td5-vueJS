@@ -22,11 +22,11 @@ export default {
         await this.$api.post('/api/cagnottes', {
           name: this.name,
           description: this.description,
-          end_date: this.dateToDB(this.endDate),
-          goal: this.goal
+          end_date: this.dateToDB(this.endDate), 
+          goal: this.formatAmount(this.goal)
         })
 
-        // succès → retour à l'accueil
+        // retour à la liste
         this.$router.push('/')
       } catch (e) {
         this.error = 'Erreur lors de la création de la cagnotte'
@@ -55,7 +55,10 @@ export default {
 
       <div>
         <label>Description</label><br />
-        <textarea v-model="description"></textarea>
+        <textarea
+          v-model="description"
+          required
+        ></textarea>
       </div>
 
       <div>
@@ -63,17 +66,17 @@ export default {
         <input
           type="text"
           v-model="endDate"
-          placeholder="dd/mm/yyyy"
+          placeholder="DD/MM/YYYY"
           required
         />
       </div>
 
       <div>
-        <label>Objectif</label><br />
+        <label>Objectif (€)</label><br />
         <input
           type="number"
           v-model="goal"
-          placeholder="€"
+          min="1"
           required
         />
       </div>
@@ -83,7 +86,7 @@ export default {
       </p>
 
       <button type="submit" :disabled="loading">
-        Créer
+        {{ loading ? 'Création...' : 'Créer' }}
       </button>
     </form>
   </div>
