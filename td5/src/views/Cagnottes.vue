@@ -45,14 +45,36 @@ export default {
 
     activeCagnottes() {
       return this.cagnottes
-        .filter(c => new Date(c.end_date) >= this.today)
+        .filter(c => {
+          const notExpired = new Date(c.end_date) >= this.today
+          const progress = this.cagnotteProgress(c)
+          return notExpired && progress < 100
+        })
         .sort((a, b) => new Date(a.end_date) - new Date(b.end_date))
     },
 
     finishedCagnottes() {
       return this.cagnottes
-        .filter(c => new Date(c.end_date) < this.today)
+        .filter(c => {
+          const expired = new Date(c.end_date) < this.today
+          const progress = this.cagnotteProgress(c)
+          return expired || progress >= 100
+        })
         .sort((a, b) => new Date(b.end_date) - new Date(a.end_date))
+    }
+  },
+
+  methods: {
+    cagnotteProgress(c) {
+      if (!c.donations || c.donations.length === 0) return 0
+      if (!c.goal || c.goal <= 0) return 0
+
+      const total = c.donations.reduce(
+        (sum, d) => sum + Number(d.amount),
+        0
+      )
+
+      return Math.round((total / Number(c.goal)) * 100)
     }
   }
 }
