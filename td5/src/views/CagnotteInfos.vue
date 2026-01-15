@@ -105,21 +105,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.stat-item {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.text-red { color: red; font-weight: bold; }
-.text-blue { color: blue; }
-progress { width: 100%; }
-</style>

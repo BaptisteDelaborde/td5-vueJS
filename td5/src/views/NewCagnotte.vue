@@ -64,7 +64,7 @@ export default {
       <div>
         <label>Date limite</label><br />
         <input
-          type="text"
+          type="date"
           v-model="endDate"
           placeholder="DD/MM/YYYY"
           required
@@ -73,12 +73,7 @@ export default {
 
       <div>
         <label>Objectif (€)</label><br />
-        <input
-          type="number"
-          v-model="goal"
-          min="1"
-          required
-        />
+        <input type="number" v-model="goal" min="1" required />
       </div>
 
       <p v-if="error" style="color:red">
