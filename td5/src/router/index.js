@@ -4,6 +4,7 @@ import NewCagnotte from '../views/NewCagnotte.vue'
 import CagnotteDetails from '../views/CagnotteDetails.vue'
 import CagnotteInfos from '../views/CagnotteInfos.vue'
 import EditCagnotte from '../views/EditCagnotte.vue'
+import Donations from '../views/Donations.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,7 +40,7 @@ const router = createRouter({
         {
           path: 'donations',
           name: 'cagnotte-donations',
-          component: { template: '<div>Liste des donations à venir...</div>'}
+          component: Donations
         }
       ]
     }
