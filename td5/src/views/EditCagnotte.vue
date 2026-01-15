@@ -63,9 +63,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.error { color: red; margin-top: 10px; }
-form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; }
-input, textarea { padding: 8px; }
-</style>

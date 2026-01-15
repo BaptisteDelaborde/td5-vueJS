@@ -74,3 +74,7 @@
 .text-red { color: red; font-weight: bold; }
 .text-blue { color: blue; }
 progress { width: 100%; }
+
+.error { color: red; margin-top: 10px; }
+form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; }
+input, textarea { padding: 8px; }

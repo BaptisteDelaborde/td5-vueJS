@@ -64,7 +64,7 @@ export default {
       <div>
         <label>Date limite</label><br />
         <input
-          type="date"
+          type="text"
           v-model="endDate"
           placeholder="DD/MM/YYYY"
           required
