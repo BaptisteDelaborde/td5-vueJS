@@ -19,9 +19,22 @@ export default {
   async mounted() {
     try {
       const response = await this.$api.get('/api/cagnottes')
-      this.cagnottes = response.data
+
+      this.cagnottes = await Promise.all(
+        response.data.map(async (c) => {
+          const donationsRes = await this.$api.get(
+            `/api/cagnottes/${c.id}/donations`
+          )
+
+          return {
+            ...c,
+            donations: donationsRes.data
+          }
+        })
+      )
     } catch (e) {
       this.error = 'Impossible de charger les cagnottes'
+      console.error(e)
     }
   },
 
@@ -49,10 +62,9 @@ export default {
   <div>
     <h1>Liste des cagnottes</h1>
 
-    <!-- BOUTON CREATION -->
     <button>
       <router-link to="/cagnottes/new">
-            Créer une nouvelle cagnotte
+        Créer une nouvelle cagnotte
       </router-link>
     </button>
 
@@ -60,7 +72,6 @@ export default {
       {{ error }}
     </p>
 
-    <!-- CAGNOTTES ACTIVES -->
     <section>
       <h2>Cagnottes en cours</h2>
 
@@ -78,7 +89,6 @@ export default {
       </router-link>
     </section>
 
-    <!-- LIEN POUR AFFICHER LES TERMINEES -->
     <p>
       <a href="#" @click.prevent="showFinished = !showFinished">
         {{ showFinished
@@ -88,7 +98,6 @@ export default {
       </a>
     </p>
 
-    <!-- CAGNOTTES TERMINEES -->
     <section v-if="showFinished">
       <h2>Cagnottes terminées</h2>
 

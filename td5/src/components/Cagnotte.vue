@@ -10,17 +10,19 @@ export default {
   },
 
   computed: {
-    // Montant collecté (0 si absent)
-    currentAmount() {
-      return Number(this.cagnotte.current_amount ?? 0)
-    },
-
-    // Objectif (sécurisé)
     goal() {
       return Number(this.cagnotte.goal ?? 0)
     },
 
-    // Pourcentage d’avancement
+    currentAmount() {
+      if (!this.cagnotte.donations) return 0
+
+      return this.cagnotte.donations.reduce(
+        (sum, d) => sum + Number(d.amount),
+        0
+      )
+    },
+
     progress() {
       if (this.goal <= 0) return 0
 
@@ -30,7 +32,6 @@ export default {
       )
     },
 
-    // Couleur selon l’urgence
     urgencyClass() {
       const today = new Date()
       const end = new Date(this.cagnotte.end_date)

@@ -8,8 +8,8 @@
         <strong>Date limite :</strong> {{ dbDateToFr(cagnotte.end_date) }}
         <br>
         <span :class="daysRemaining < 5 ? 'text-red' : 'text-blue'">
-                (Reste {{ daysRemaining }} jours)
-            </span>
+          (Reste {{ daysRemaining }} jours)
+        </span>
       </div>
 
       <div class="stat-item">
@@ -43,51 +43,64 @@
 <script>
 export default {
   props: ['cagnotte'],
+
   data() {
     return {
       donations: []
     }
   },
+
   computed: {
     daysRemaining() {
-      const end = new Date(this.cagnotte.end_date);
-      const now = new Date();
-      const diffTime = end - now;
-      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const end = new Date(this.cagnotte.end_date)
+      const now = new Date()
+      const diffTime = end - now
+      return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
     },
     currentAmount() {
-      return this.donations.reduce((acc, don) => acc + don.amount, 0);
+      return this.donations.reduce(
+        (acc, don) => acc + Number(don.amount),
+        0
+      )
     },
+
     remainingAmount() {
-      const reste = this.cagnotte.goal - this.currentAmount;
-      return reste > 0 ? reste : 0;
+      const reste = this.cagnotte.goal - this.currentAmount
+      return reste > 0 ? reste : 0
     },
+
     progressPercentage() {
-      if(this.cagnotte.goal === 0) return 0;
-      const p = (this.currentAmount / this.cagnotte.goal) * 100;
-      return p.toFixed(2);
+      if (!this.cagnotte.goal || this.cagnotte.goal <= 0) return 0
+      const p = (this.currentAmount / this.cagnotte.goal) * 100
+      return p.toFixed(2)
     },
+
     averageDonation() {
-      if (this.donations.length === 0) return 0;
-      return this.currentAmount / this.donations.length;
+      if (this.donations.length === 0) return 0
+      return this.currentAmount / this.donations.length
     }
   },
+
   mounted() {
-    this.fetchDonations();
+    this.fetchDonations()
   },
+
   watch: {
-    'cagnotte.id': function() {
-      this.fetchDonations();
+    'cagnotte.id'() {
+      this.fetchDonations()
     }
   },
+
   methods: {
     fetchDonations() {
-      if(!this.cagnotte || !this.cagnotte.id) return;
+      if (!this.cagnotte || !this.cagnotte.id) return
+
+      // ✅ ON GARDE /api
       this.$api.get(`/api/cagnottes/${this.cagnotte.id}/donations`)
         .then(response => {
-          this.donations = response.data;
+          this.donations = response.data
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err))
     }
   }
 }
