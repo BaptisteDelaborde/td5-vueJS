@@ -156,36 +156,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.form-card {
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-.form-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-input {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-.full-width { flex: 1; }
-.btn-success { background-color: #42b883; color: white; border: none; padding: 8px 16px; cursor: pointer; }
-.btn-warning { background-color: #f39c12; color: white; border: none; padding: 8px 16px; cursor: pointer; }
-.error { color: red; }
-
-/* animation pour le css */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-</style>

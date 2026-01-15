@@ -78,3 +78,153 @@ progress { width: 100%; }
 .error { color: red; margin-top: 10px; }
 form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; }
 input, textarea { padding: 8px; }
+
+
+.form-card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.full-width { flex: 1; }
+.btn-success { background-color: #42b883; color: white; border: none; padding: 8px 16px; cursor: pointer; }
+.btn-warning { background-color: #f39c12; color: white; border: none; padding: 8px 16px; cursor: pointer; }
+.error { color: red; }
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.donation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.top-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.amount {
+  font-weight: bold;
+  color: #42b883;
+}
+
+.meta {
+  color: #888;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.comment {
+  font-style: italic;
+  color: #555;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-small {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.btn-delete:hover {
+  background: #ffcccc;
+  border-color: #ff9999;
+}
+
+.header-cagnotte {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tabs a {
+  text-decoration: none;
+  padding: 10px 20px;
+  background: #f0f0f0;
+  color: #333;
+  border-radius: 5px 5px 0 0;
+}
+.tabs a.active {
+  background: #42b883;
+  color: white;
+  font-weight: bold;
+}
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+
+}
+.btn-retour {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #f0f0f0;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.btn-retour:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-modifier {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: mediumseagreen;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.btn-modifier:hover {
+  background-color: lightgreen;
+}
